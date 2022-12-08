@@ -2,6 +2,8 @@
 #include <stdlib.h>
 #include <string.h>
 
+// Day 1: Sum each group of numbers in data.txt and find the highest sum
+// Answer: 74198
 int main()
 {
     FILE *pF = fopen("data.txt", "r");
@@ -11,48 +13,28 @@ int main()
         return 1;
     }
 
-    // TODO: work with dynamic byte space
-    unsigned long numbers[2500];
-    int number_of_groups = 0;
-    int current_number_index = 0;
-
+    int current_total = 0;
+    int highest_total = 0;
     char buffer[10];
     while (fgets(buffer, 10, pF) != NULL)
     {
-        unsigned long num;
-        if (strlen(buffer) - 1 > 0)
+        if (strlen(buffer) > 1)
         {
             char *ptr;
-            num = strtol(buffer, &ptr, 10);
+            current_total += strtol(buffer, &ptr, 10);
         }
         else
         {
-            number_of_groups++;
-            num = 0;
-        }
+            if (current_total > highest_total)
+            {
+                highest_total = current_total;
+            }
 
-        numbers[current_number_index] = num;
-        current_number_index++;
-    }
-
-    current_number_index = 0;
-    unsigned long highest = 0;
-    for (int i = 0; i < number_of_groups; i++)
-    {
-        // This is where I fail:
-        unsigned int sum = 0;
-        while (numbers[current_number_index] != 0)
-        {
-            sum += numbers[current_number_index];
-            current_number_index++;
-        }
-        if (sum > highest)
-        {
-            highest = sum;
+            current_total = 0;
         }
     }
 
-    printf("The highest sum is: %lu", highest);
+    printf("The highest total is: %d", highest_total);
     fclose(pF);
 
     return 0;
