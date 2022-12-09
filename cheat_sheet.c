@@ -3,6 +3,8 @@
 #include <math.h>
 #include <string.h>
 
+// buffer = &buffer[0]
+
 // Types
 typedef char player_name[25];
 

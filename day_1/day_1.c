@@ -2,8 +2,9 @@
 #include <stdlib.h>
 #include <string.h>
 
-// Day 1: Sum each group of numbers in data.txt and find the highest sum
+// Day 1: Sum each group of numbers in data.txt and find the highest sum.
 // Answer: 74198
+
 int main()
 {
     FILE *pF = fopen("data.txt", "r");
