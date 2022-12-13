@@ -1,12 +1,11 @@
 #include <stdio.h>
 #include <string.h>
 
-// Each line of the input (data.txt) represents a sack with 2 compartments.
-// Each half of the line is a compartment, and they contain supplies.
-// Each supply is given a priority value, a-z = 1-26, A-Z = 27-52.
-// In each sack, there is a duplicate item within both compartments.
+// Each line of the input (data.txt) is a random string.
+// The halves of each string will contain a duplicate.
+// Each duplicate is given a value, a-z = 1-26, A-Z = 27-52.
 //
-// Sum the total priority values of the duplicate items from each sack.
+// Sum the total values of the duplicate items from each string.
 // Answer: 8088
 #define LOWERCASE_A 97
 #define LOWERCASE_MODIFIER 96
