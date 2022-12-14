@@ -2,9 +2,9 @@
 #include <stdlib.h>
 #include <string.h>
 
-// Day 1: Sum each group of numbers in data.txt and find the highest sum.
+// Sum each group of numbers in data.txt and find the highest sum.
+//
 // Answer: 74198
-
 int main()
 {
     FILE *pF = fopen("data.txt", "r");
@@ -19,11 +19,13 @@ int main()
     char buffer[10];
     while (fgets(buffer, 10, pF) != NULL)
     {
+        // If it's not an empty line, keep summing the current group
         if (strlen(buffer) > 1)
         {
             char *ptr;
             current_total += strtol(buffer, &ptr, 10);
         }
+        // Otherwise, check if the total is our highest so far and reset the current group's total
         else
         {
             if (current_total > highest_total)

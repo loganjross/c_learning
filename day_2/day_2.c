@@ -10,7 +10,6 @@
 //
 // Sum the total points from every round in the file.
 // Answer: 12740
-
 bool is_rock(char choice);
 bool is_paper(char choice);
 bool is_scissors(char choice);
@@ -35,11 +34,14 @@ int main()
   while (fgets(buffer, 3, pF) != NULL)
   {
     char choice = buffer[0];
+
+    // If opponent is unset, we're on a new round and the current choice is the opponent's
     if (opponent == 0)
     {
       opponent = choice;
       continue;
     }
+    // Otherwise, the current choice is the players and we should compare to the opponent
     else
     {
       if (is_draw(opponent, choice))

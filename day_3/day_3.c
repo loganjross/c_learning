@@ -1,7 +1,7 @@
 #include <stdio.h>
 #include <string.h>
 
-// Each line of the input (data.txt) is a random string.
+// Each line of data.txt is a random string.
 // The halves of each string will contain a duplicate.
 // Each duplicate is given a value, a-z = 1-26, A-Z = 27-52.
 //
