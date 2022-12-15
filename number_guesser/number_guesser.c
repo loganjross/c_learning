@@ -34,17 +34,14 @@ void request_confirmation(bool *affected_value)
 
 int play_computer_round()
 {
-    int remaining_guesses = computer_hp;
     printf("It's the computer's turn to guess. Think of a number between 1-%d...\n\n", GUESSES_PER_ROUND);
     sleep(SLEEP_DURATION);
 
     bool guessed_correctly = false;
     int numbers_guessed[GUESSES_PER_ROUND] = {0, 0, 0, 0, 0};
+    int remaining_guesses = computer_hp;
     while (!guessed_correctly && remaining_guesses > 0)
     {
-        sleep(SLEEP_DURATION);
-        remaining_guesses--;
-
         int guess;
         while (is_in_array(guess, numbers_guessed, GUESSES_PER_ROUND))
         {
@@ -54,22 +51,25 @@ int play_computer_round()
 
         printf("Is your number %d? (y/n) ", guess);
         request_confirmation(&guessed_correctly);
+        if (!guessed_correctly)
+            remaining_guesses--;
+
+        sleep(SLEEP_DURATION);
     }
 
-    return remaining_guesses == computer_hp ? computer_hp : remaining_guesses + 1;
+    return remaining_guesses;
 }
 
 int play_player_round()
 {
-    int remaining_guesses = player_hp;
     printf("It's your turn to guess. The computer is generating a number between 1-%d...\n\n", GUESSES_PER_ROUND);
-    int number_to_guess = rand() % GUESSES_PER_ROUND;
     sleep(SLEEP_DURATION);
 
     bool guessed_correctly = false;
+    int number_to_guess = rand() % GUESSES_PER_ROUND;
+    int remaining_guesses = player_hp;
     while (!guessed_correctly && remaining_guesses > 0)
     {
-        sleep(SLEEP_DURATION);
         remaining_guesses--;
 
         int guess;
@@ -84,10 +84,13 @@ int play_player_round()
         else
         {
             printf("That's wrong, guess again..\n\n");
+            remaining_guesses--;
         }
+
+        sleep(SLEEP_DURATION);
     }
 
-    return remaining_guesses == player_hp ? player_hp : remaining_guesses + 1;
+    return remaining_guesses;
 }
 
 int play_round()
@@ -167,7 +170,7 @@ int main()
 
         if (computer_hp > 0 && player_hp > 0)
         {
-            printf("Good round, the computer has %d HP and you have %d HP remaining! \n\n", computer_hp, player_hp);
+            printf("Good round, the computer has %d HP and you have %d\n\n", computer_hp, player_hp);
             sleep(SLEEP_DURATION);
         }
     }
