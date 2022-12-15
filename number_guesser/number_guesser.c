@@ -79,11 +79,11 @@ int play_player_round()
         guessed_correctly = guess == number_to_guess;
         if (guessed_correctly)
         {
-            printf("That's right!\n\n");
+            printf("\nThat's right!\n\n");
         }
         else
         {
-            printf("That's wrong, guess again..\n\n");
+            printf("\nThat's wrong, guess again..\n\n");
             remaining_guesses--;
         }
 
@@ -170,7 +170,7 @@ int main()
 
         if (computer_hp > 0 && player_hp > 0)
         {
-            printf("Good round, the computer has %d HP and you have %d\n\n", computer_hp, player_hp);
+            printf("Good round, the computer has %d HP and you have %d HP...\n\n", computer_hp, player_hp);
             sleep(SLEEP_DURATION);
         }
     }
